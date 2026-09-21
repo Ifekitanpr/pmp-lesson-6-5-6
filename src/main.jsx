@@ -4,7 +4,6 @@ import { createPortal } from "react-dom";
 import {
   ArrowLeft,
   ArrowRight,
-  Award,
   Check,
   Volume2,
   VolumeX,
@@ -41,51 +40,50 @@ const tabs = [
 
 const reveals = {
   hook: {
-    title: "Scope Never Lives in a Vacuum",
-    text: "Think of it like keeping an eye on the weather during a road trip. If you don't monitor the forecast, you may suddenly find yourself driving straight into a storm. One of the biggest mistakes in project management is assuming that once scope is set, it stays fixed. The external business environment is constantly evolving — new regulations are introduced, markets shift, technologies disrupt, and geopolitical events reshape supply chains overnight. Continual review ensures you adapt early, realign scope, and keep the project safe.",
+    title: "Lesson 6.5.6 — Continually Review the External Business Environment for Impacts on Project Scope/Backlog",
+    text: "One of the biggest mistakes in project management is assuming that once scope is set, it stays fixed. The external business environment is constantly evolving — new regulations are introduced, markets shift, technologies disrupt, and geopolitical events reshape supply chains overnight. Continual review ensures you're never caught off guard — you adapt early, realign scope, and keep the project safe.",
     image: "road-trip-weather",
   },
   matters: {
-    title: "Four Proactive Strategic Outcomes",
-    text: "External conditions don't change once — they evolve continuously. Ongoing environmental scanning delivers four vital organizational advantages: 1) Early Risk Detection catches potential disruptions before they escalate into costly issues; 2) Captured Opportunities capitalize on emerging technologies, favorable market windows, or cost-saving innovations; 3) Regulatory Compliance ensures continuous alignment with evolving laws, preventing penalties and work stoppages; 4) Strategic Alignment keeps deliverable value synchronized with organizational strategy and real-world customer demand.",
+    title: "Why Continuous Monitoring Matters",
+    text: "It helps teams identify risks early, catching potential issues before they escalate into major problems. It also enables them to capitalize on opportunities, such as emerging technologies or market shifts that can create added value. Ongoing monitoring ensures regulatory compliance, reducing the risk of costly violations, and keeps the project strategically aligned with business objectives and external realities as conditions change.",
     image: "scanning-outcomes-radar",
   },
   exam: {
-    title: "Proactive Environmental Alignment",
-    text: "Back to that road trip one more time — because the storm was never going to wait for a scheduled check-in. Maintaining an outward-looking radar ensures the project navigates environmental shifts cleanly, preserving value and compliance.",
+    title: "Synthesis (Exam Lens)",
+    text: "Continually reviewing the external business environment means maintaining an ongoing process of scanning, analyzing, and responding to regulations and compliance, technological advances, geopolitical events, and market shifts. It's continuous environmental scanning, not a one-off activity — helping teams catch risks early, capitalize on opportunities, stay compliant, and remain strategically aligned. Establishing a monitoring system means implementing continuous monitoring processes, analyzing emerging trends, and adapting scope or backlog accordingly. How that adaptation happens depends on governance model: traditional projects route changes through formal steering committee approval at defined intervals, while agile teams let the Product Owner monitor and reprioritize the backlog continuously.",
     image: "exam-external-review",
     bullets: [
-      "Four external factor categories: Regulations and compliance, technological advances, geopolitical events, market shifts",
-      "Continuous scanning: Environmental scanning is an ongoing discipline, never a one-off planning activity",
-      "Three-step monitoring system: Implement continuous monitoring processes, analyze emerging trends, adapt scope or backlog",
-      "Traditional governance: Formal steering committee review and approval of baseline adjustments at defined intervals",
-      "Agile governance: Product Owner continually monitors external conditions and reprioritizes the product backlog as new information emerges",
+      "Four external factor categories: regulations and compliance, technological advances, geopolitical events, market shifts",
+      "This is continuous environmental scanning, never a one-off activity",
+      "Three-step monitoring system: implement continuous monitoring processes, analyze emerging trends, adapt scope or backlog",
+      "Traditional governance: formal steering committee review and approval at defined intervals. Agile: Product Owner monitors continuously and reprioritizes the backlog as new information emerges",
     ],
   },
 };
 
 const categories = [
   {
-    title: "1. Regulations & Compliance",
-    text: "Laws, industry standards, statutory requirements, or tax changes that mandate project adjustments. Non-compliance risks severe penalties, work stoppages, or total project invalidation.",
+    title: "1. Regulations and Compliance",
+    text: "Laws, industry standards, or tax changes.",
     image: "category-regulations",
     icon: Scale,
   },
   {
     title: "2. Technological Advances",
-    text: "New tools, platforms, architectural capabilities, or disruptive innovations that alter feasibility or user expectations. Leveraging emerging tech protects product competitiveness.",
+    text: "New tools, platforms, or disruptive innovations.",
     image: "category-technology",
     icon: Cpu,
   },
   {
     title: "3. Geopolitical Events",
-    text: "Trade restrictions, regional instability, tariffs, sanctions, or international policies reshaping supply chains and vendor availability. Proactive sourcing mitigates sudden disruptions.",
+    text: "Trade restrictions, instability, or new policies.",
     image: "category-geopolitical",
     icon: Globe,
   },
   {
     title: "4. Market Shifts",
-    text: "Competitor moves, customer preferences, supply-demand balances, or macroeconomic fluctuations that redefine product value. Keeps deliverables aligned with real market demand.",
+    text: "Competitor moves, customer preferences, or economic changes.",
     image: "category-market-shifts",
     icon: TrendingUp,
   },
@@ -93,20 +91,20 @@ const categories = [
 
 const systemSteps = [
   {
-    title: "1. Implement Monitoring Processes",
-    text: "Environmental scanning (industry reports, regulatory feeds, competitor alerts), SWOT analysis to evaluate impact, and dashboards for real-time tracking.",
+    title: "1. Implement Continuous Monitoring Processes",
+    text: "Environmental scanning (reports, news, alerts), SWOT analysis to evaluate impact, and dashboards for real-time monitoring.",
     image: "system-monitoring-process",
     icon: Radar,
   },
   {
     title: "2. Analyze Emerging Trends",
-    text: "Use predictive analytics, impact modeling, and trend analysis tools to identify which external patterns will reshape project scope or backlog priorities.",
+    text: "Use predictive analytics and trend analysis tools to identify which patterns could reshape scope or backlog.",
     image: "system-analyze-trends",
     icon: LineChart,
   },
   {
     title: "3. Adapt Scope or Backlog",
-    text: "Agile: collaborate to reprioritize backlog items and adjust sprint plans. Traditional: submit change requests, revise scope documents, and update baselines.",
+    text: "Agile: reprioritize backlog, adjust sprint planning. Traditional: update baselines, revise scope documents.",
     image: "system-adapt-scope",
     icon: GitFork,
   },
@@ -115,7 +113,7 @@ const systemSteps = [
 const governanceModels = [
   {
     title: "1. Traditional Governance",
-    text: "Steering Committees or governance bodies review external changes at defined intervals. Any adjustments to scope, cost, or schedule baselines must be formally analyzed, costed, and approved before implementation. Example: a new international tariff requires the steering committee to approve alternative supplier arrangements and updated cost baselines.",
+    text: "Steering Committees or governance bodies review external changes at defined intervals. Any adjustments to scope, cost, or schedule baselines must be formally analyzed and approved before implementation. Example: a new international tariff requires the steering committee to approve alternative supplier arrangements and updated cost baselines.",
     image: "governance-traditional",
     icon: Landmark,
   },
@@ -129,7 +127,7 @@ const governanceModels = [
 
 const quizzes = [
   {
-    q: "A project manager reads industry news and receives alerts about a competitor's product launch, but never formally evaluates what impact this might have on the project, nor updates any dashboard or scope document as a result. What step in establishing a monitoring system is missing?",
+    q: "Scenario: A project manager reads industry news and receives alerts about a competitor's product launch, but never formally evaluates what impact this might have on the project, nor updates any dashboard or scope document as a result. What step in establishing a monitoring system is missing?",
     a: [
       "Implementing continuous monitoring processes, since the news and alerts weren't real environmental scanning",
       "Analyzing emerging trends and adapting scope or backlog — awareness of the event alone doesn't evaluate impact or translate into an actual scope/backlog adjustment",
@@ -141,7 +139,7 @@ const quizzes = [
     b: "Reconsider — the scanning step (reading news, receiving alerts) was actually happening; the gap is in the analysis and adaptation steps that should follow it, not the governance model, which doesn't change what's missing here.",
   },
   {
-    q: "A new data privacy law is announced mid-project. The project is being run using an agile approach with a Product Owner and regular sprint cycles. What is the most appropriate way to respond, based on this lesson?",
+    q: "Scenario: A new data privacy law is announced mid-project. The project is being run using an agile approach with a Product Owner and regular sprint cycles. What is the most appropriate way to respond, based on this lesson?",
     a: [
       "Wait for the next formally scheduled steering committee meeting before making any changes to the backlog",
       "The Product Owner monitors the change and collaborates with the team to reprioritize the backlog promptly, introducing compliance-related user stories as needed",
@@ -178,7 +176,7 @@ function Modal({ d, close, done }) {
           </>
         ) : (
           <div className="modal-summary">
-            <h3>Key Takeaways</h3>
+            <h3>Exam-Relevant Enablers to Remember</h3>
             <ul>
               {d.bullets.map((b) => (
                 <li key={b}>{b}</li>
@@ -270,32 +268,31 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">LESSON 6.5.6 · CONTINUALLY REVIEW EXTERNAL ENVIRONMENT</p>
-          <h1>
-            Weather never waits for scheduled <span>stops.</span>
-          </h1>
+          <p className="eyebrow">SCREEN 1 — HOOK</p>
+          <h1>Lesson 6.5.6 — Continually Review the External Business Environment for Impacts on Project Scope/Backlog</h1>
           <p className="lead">
-            Think of it like keeping an eye on the weather during a road trip. If you don't monitor the forecast, you may suddenly find yourself driving straight into a storm. Scope never lives in a vacuum — continuous external scanning keeps you ahead of disruptions.
+            Think of it like keeping an eye on the weather during a road trip. If you don't monitor the forecast, you may suddenly find yourself driving straight into a storm.
           </p>
           <button
             className="primary-cta"
             disabled={done[0]}
             onClick={() => !done[0] && setModal("hook")}
           >
-            {done[0] ? "Environmental radar reviewed" : "Reveal environmental radar"}{" "}
+            {done[0] ? "Environmental review complete" : "Click to Reveal: The External Risk"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
-        <img className="lesson-art" src={img("road-trip-weather")} alt="" />
+        <img className="lesson-art" src={img("road-trip-weather")} alt="Road trip weather monitoring" />
       </div>
     );
 
   if (s === 1)
     c = (
       <div className="wide-page">
+        <p className="eyebrow">SCREEN 2 — FOUR CATEGORIES OF EXTERNAL FACTORS</p>
         <h2>Four Categories of External Factors</h2>
         <p className="lead">
-          Environmental scanning is not a one-off planning activity — it is continuous vigilance across four vital categories. Click each category to explore.
+          This is not a one-off activity — it's continuous environmental scanning across four categories. Click each to explore.
         </p>
         <div className="card-grid four">
           {categories.map((cat, i) => {
@@ -334,30 +331,31 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">STRATEGIC VALUE</p>
-          <h2>Four Strategic Scanning Outcomes</h2>
+          <p className="eyebrow">SCREEN 3 — WHY CONTINUOUS MONITORING MATTERS</p>
+          <h2>Why Continuous Monitoring Matters</h2>
           <p className="lead">
-            External conditions evolve continuously. Active scanning delivers four vital organizational advantages: early risk detection, captured opportunities, continuous regulatory compliance, and sustained strategic alignment.
+            External conditions don't change once — they evolve. Continuous monitoring allows project managers to stay ahead rather than react late.
           </p>
           <button
             className="primary-cta"
             disabled={done[2]}
             onClick={() => !done[2] && setModal("matters")}
           >
-            {done[2] ? "Strategic outcomes reviewed" : "Reveal strategic scanning outcomes"}{" "}
+            {done[2] ? "Monitoring outcomes reviewed" : "Click to Reveal: Strategic Outcomes"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
-        <img className="lesson-art" src={img("scanning-outcomes-radar")} alt="" />
+        <img className="lesson-art" src={img("scanning-outcomes-radar")} alt="Strategic scanning radar" />
       </div>
     );
 
   if (s === 3)
     c = (
       <div className="wide-page">
+        <p className="eyebrow">SCREEN 4 — HOW TO ESTABLISH A MONITORING SYSTEM</p>
         <h2>How to Establish a Monitoring System</h2>
         <p className="lead">
-          Three disciplined steps turn casual awareness into an operational monitoring system. Click each step to explore.
+          Three steps turn "keeping an eye on things" into an actual system. Click each to explore.
         </p>
         <div className="card-grid three">
           {systemSteps.map((step, i) => {
@@ -397,11 +395,11 @@ function App() {
           >
             {done[3] ? (
               <>
-                <Check size={18} /> Knowledge check completed
+                <Check size={18} /> Micro Knowledge Check completed
               </>
             ) : (
               <>
-                <Target size={18} /> Start knowledge check <ArrowRight size={18} />
+                <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
               </>
             )}
           </button>
@@ -412,9 +410,10 @@ function App() {
   if (s === 4)
     c = (
       <div className="wide-page">
+        <p className="eyebrow">SCREEN 5 — GOVERNANCE VS. AGILE APPROACHES</p>
         <h2>Governance vs. Agile Approaches</h2>
         <p className="lead">
-          How external changes get handled depends heavily on the project's governance framework. Click each approach to explore.
+          How external changes get handled depends heavily on the project's governance model. Click each to explore.
         </p>
         <div className="card-grid two">
           {governanceModels.map((gov, i) => {
@@ -454,11 +453,11 @@ function App() {
           >
             {done[4] ? (
               <>
-                <Check size={18} /> Knowledge check completed
+                <Check size={18} /> Micro Knowledge Check completed
               </>
             ) : (
               <>
-                <Target size={18} /> Start knowledge check <ArrowRight size={18} />
+                <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
               </>
             )}
           </button>
@@ -469,26 +468,23 @@ function App() {
   if (s === 5)
     c = (
       <div className="exam-layout">
-        <p className="eyebrow">MODULE 6 SYNTHESIS</p>
-        <h2>Proactive Environmental Alignment</h2>
+        <p className="eyebrow">SCREEN 6 — SYNTHESIS (EXAM LENS)</p>
+        <h2>Synthesis (Exam Lens)</h2>
         <div className="exam-two-col">
           <div>
             <p className="lead">
               Back to that road trip one more time — because the storm was never going to wait for a scheduled check-in.
-            </p>
-            <p>
-              Maintaining an outward-looking radar ensures the project navigates environmental shifts cleanly, preserving value and compliance across adaptive and predictive lifecycles.
             </p>
             <button
               className="primary-cta"
               disabled={done[5]}
               onClick={() => setModal("exam")}
             >
-              {done[5] ? "Exam takeaway review complete" : "Review key exam takeaways"}{" "}
+              {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
               <ArrowRight size={18} />
             </button>
           </div>
-          <img className="lesson-art" src={img("exam-external-review")} alt="" />
+          <img className="lesson-art" src={img("exam-external-review")} alt="Road trip synthesis" />
         </div>
       </div>
     );
@@ -499,7 +495,7 @@ function App() {
         <div className="course-select">
           <span className="crumb">Module 6</span>
           <span className="crumb-sep">/</span>
-          <span className="crumb-current">Lesson 6.5.6</span>
+          <span className="crumb-current">Lesson 6.5.6 — Continually Review the External Business Environment for Impacts on Project Scope/Backlog</span>
         </div>
         <div className="module-progress">
           <div>
