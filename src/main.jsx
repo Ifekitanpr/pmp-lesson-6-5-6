@@ -6,10 +6,10 @@ import {
   ArrowRight,
   Award,
   Check,
-  ChevronDown,
   Volume2,
   VolumeX,
   X,
+  Target,
   Scale,
   Cpu,
   Globe,
@@ -19,9 +19,6 @@ import {
   GitFork,
   Landmark,
   Repeat,
-  Sparkles,
-  HelpCircle,
-  Compass,
 } from "lucide-react";
 import { useLessonAudio } from "../../shared/useLessonAudio";
 import "./styles.css";
@@ -42,32 +39,53 @@ const tabs = [
   "Exam lens",
 ];
 
+const reveals = {
+  hook: {
+    title: "Scope Never Lives in a Vacuum",
+    text: "Think of it like keeping an eye on the weather during a road trip. If you don't monitor the forecast, you may suddenly find yourself driving straight into a storm. One of the biggest mistakes in project management is assuming that once scope is set, it stays fixed. The external business environment is constantly evolving — new regulations are introduced, markets shift, technologies disrupt, and geopolitical events reshape supply chains overnight. Continual review ensures you adapt early, realign scope, and keep the project safe.",
+    image: "road-trip-weather",
+  },
+  matters: {
+    title: "Four Proactive Strategic Outcomes",
+    text: "External conditions don't change once — they evolve continuously. Ongoing environmental scanning delivers four vital organizational advantages: 1) Early Risk Detection catches potential disruptions before they escalate into costly issues; 2) Captured Opportunities capitalize on emerging technologies, favorable market windows, or cost-saving innovations; 3) Regulatory Compliance ensures continuous alignment with evolving laws, preventing penalties and work stoppages; 4) Strategic Alignment keeps deliverable value synchronized with organizational strategy and real-world customer demand.",
+    image: "scanning-outcomes-radar",
+  },
+  exam: {
+    title: "Proactive Environmental Alignment",
+    text: "Back to that road trip one more time — because the storm was never going to wait for a scheduled check-in. Maintaining an outward-looking radar ensures the project navigates environmental shifts cleanly, preserving value and compliance.",
+    image: "exam-external-review",
+    bullets: [
+      "Four external factor categories: Regulations and compliance, technological advances, geopolitical events, market shifts",
+      "Continuous scanning: Environmental scanning is an ongoing discipline, never a one-off planning activity",
+      "Three-step monitoring system: Implement continuous monitoring processes, analyze emerging trends, adapt scope or backlog",
+      "Traditional governance: Formal steering committee review and approval of baseline adjustments at defined intervals",
+      "Agile governance: Product Owner continually monitors external conditions and reprioritizes the product backlog as new information emerges",
+    ],
+  },
+};
+
 const categories = [
   {
     title: "1. Regulations & Compliance",
-    description:
-      "Laws, industry standards, statutory requirements, or tax changes that mandate project adjustments.",
+    text: "Laws, industry standards, statutory requirements, or tax changes that mandate project adjustments. Non-compliance risks severe penalties, work stoppages, or total project invalidation.",
     image: "category-regulations",
     icon: Scale,
   },
   {
     title: "2. Technological Advances",
-    description:
-      "New tools, platforms, architectural capabilities, or disruptive innovations that alter feasibility or user expectations.",
+    text: "New tools, platforms, architectural capabilities, or disruptive innovations that alter feasibility or user expectations. Leveraging emerging tech protects product competitiveness.",
     image: "category-technology",
     icon: Cpu,
   },
   {
     title: "3. Geopolitical Events",
-    description:
-      "Trade restrictions, regional instability, tariffs, sanctions, or international policies reshaping supply chains.",
+    text: "Trade restrictions, regional instability, tariffs, sanctions, or international policies reshaping supply chains and vendor availability. Proactive sourcing mitigates sudden disruptions.",
     image: "category-geopolitical",
     icon: Globe,
   },
   {
     title: "4. Market Shifts",
-    description:
-      "Competitor moves, customer preferences, supply-demand balances, or macroeconomic fluctuations that redefine product value.",
+    text: "Competitor moves, customer preferences, supply-demand balances, or macroeconomic fluctuations that redefine product value. Keeps deliverables aligned with real market demand.",
     image: "category-market-shifts",
     icon: TrendingUp,
   },
@@ -75,23 +93,20 @@ const categories = [
 
 const systemSteps = [
   {
-    title: "1. Implement Continuous Monitoring Processes",
-    description:
-      "Environmental scanning (industry reports, regulatory feeds, competitor alerts), SWOT analysis to evaluate impact, and dashboards for real-time tracking.",
+    title: "1. Implement Monitoring Processes",
+    text: "Environmental scanning (industry reports, regulatory feeds, competitor alerts), SWOT analysis to evaluate impact, and dashboards for real-time tracking.",
     image: "system-monitoring-process",
     icon: Radar,
   },
   {
     title: "2. Analyze Emerging Trends",
-    description:
-      "Use predictive analytics, impact modeling, and trend analysis tools to identify which external patterns will reshape project scope or backlog priorities.",
+    text: "Use predictive analytics, impact modeling, and trend analysis tools to identify which external patterns will reshape project scope or backlog priorities.",
     image: "system-analyze-trends",
     icon: LineChart,
   },
   {
     title: "3. Adapt Scope or Backlog",
-    description:
-      "Agile: collaborate to reprioritize backlog items and adjust sprint plans. Traditional: submit change requests, revise scope documents, and update baselines.",
+    text: "Agile: collaborate to reprioritize backlog items and adjust sprint plans. Traditional: submit change requests, revise scope documents, and update baselines.",
     image: "system-adapt-scope",
     icon: GitFork,
   },
@@ -100,15 +115,13 @@ const systemSteps = [
 const governanceModels = [
   {
     title: "1. Traditional Governance",
-    description:
-      "Steering Committees or governance bodies review external changes at defined intervals. Any adjustments to scope, cost, or schedule baselines must be formally analyzed, costed, and approved before implementation. Example: a new international tariff requires the steering committee to approve alternative supplier arrangements and updated cost baselines.",
+    text: "Steering Committees or governance bodies review external changes at defined intervals. Any adjustments to scope, cost, or schedule baselines must be formally analyzed, costed, and approved before implementation. Example: a new international tariff requires the steering committee to approve alternative supplier arrangements and updated cost baselines.",
     image: "governance-traditional",
     icon: Landmark,
   },
   {
     title: "2. Agile Approach",
-    description:
-      "Change is addressed continuously. The Product Owner actively monitors external conditions and collaborates with the team to adjust the Product Backlog as new information emerges. Sprint planning and retrospectives ensure external realities are regularly reflected in delivery decisions. Example: a new data privacy law triggers immediate backlog reprioritization to introduce compliance-related user stories.",
+    text: "Change is addressed continuously. The Product Owner actively monitors external conditions and collaborates with the team to adjust the Product Backlog as new information emerges. Sprint planning and retrospectives ensure external realities are regularly reflected in delivery decisions. Example: a new data privacy law triggers immediate backlog reprioritization to introduce compliance-related user stories.",
     image: "governance-agile",
     icon: Repeat,
   },
@@ -123,11 +136,9 @@ const quizzes = [
       "Nothing is missing — reading news and receiving alerts is sufficient to establish a monitoring system",
       "The governance model, since agile and traditional approaches handle this differently",
     ],
-    correct: 1,
-    explain:
-      "Correct! Environmental scanning (the news and alerts) is only the first step — without analyzing what the trend actually means and then adapting scope or backlog accordingly, awareness alone changes nothing about the project.",
-    fail:
-      "Reconsider — the scanning step (reading news, receiving alerts) was actually happening; the gap is in the analysis and adaptation steps that should follow it, not the governance model, which doesn't change what's missing here.",
+    c: 1,
+    g: "Correct! Environmental scanning (the news and alerts) is only the first step — without analyzing what the trend actually means and then adapting scope or backlog accordingly, awareness alone changes nothing about the project.",
+    b: "Reconsider — the scanning step (reading news, receiving alerts) was actually happening; the gap is in the analysis and adaptation steps that should follow it, not the governance model, which doesn't change what's missing here.",
   },
   {
     q: "A new data privacy law is announced mid-project. The project is being run using an agile approach with a Product Owner and regular sprint cycles. What is the most appropriate way to respond, based on this lesson?",
@@ -137,654 +148,447 @@ const quizzes = [
       "Continue with the current sprint plan unchanged, since external regulatory changes don't affect backlog priority",
       "Formally analyze and approve the change through a governance body before any backlog adjustment can occur",
     ],
-    correct: 1,
-    explain:
-      "Correct! In agile environments, the Product Owner actively monitors external conditions and adjusts the backlog continuously — waiting for a scheduled committee meeting or formal governance approval is the traditional pattern, not the agile one.",
-    fail:
-      "Reconsider — waiting for a scheduled meeting or formal governance approval describes the traditional governance pattern, not agile; and a new data privacy law is exactly the kind of external factor that should prompt backlog reprioritization, not be ignored.",
+    c: 1,
+    g: "Correct! In agile environments, the Product Owner actively monitors external conditions and adjusts the backlog continuously — waiting for a scheduled committee meeting or formal governance approval is the traditional pattern, not the agile one.",
+    b: "Reconsider — waiting for a scheduled meeting or formal governance approval describes the traditional governance pattern, not agile; and a new data privacy law is exactly the kind of external factor that should prompt backlog reprioritization, not be ignored.",
   },
 ];
 
+function Modal({ d, close, done }) {
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    const esc = (e) => e.key === "Escape" && close();
+    window.addEventListener("keydown", esc);
+    return () => window.removeEventListener("keydown", esc);
+  }, [close]);
+
+  return createPortal(
+    <div className="modal-backdrop" onClick={close}>
+      <section className="focus-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-x" onClick={close} aria-label="Close modal">
+          <X size={20} />
+        </button>
+        {step === 0 ? (
+          <>
+            <img className="modal-illustration" src={img(d.image)} alt="" />
+            <h3>{d.title}</h3>
+            <div className="modal-copy">
+              <p>{d.text}</p>
+            </div>
+          </>
+        ) : (
+          <div className="modal-summary">
+            <h3>Key Takeaways</h3>
+            <ul>
+              {d.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {d.bullets && step === 0 ? (
+          <button className="modal-action" onClick={() => setStep(1)}>
+            Next <ArrowRight size={18} />
+          </button>
+        ) : (
+          <button
+            className="modal-action"
+            onClick={() => {
+              done();
+              close();
+            }}
+          >
+            Mark as read <Check size={18} />
+          </button>
+        )}
+      </section>
+    </div>,
+    document.body
+  );
+}
+
+function Quiz({ d, finish }) {
+  const [p, setP] = useState(null);
+  return createPortal(
+    <div className="knowledge-backdrop">
+      <section className="knowledge-modal">
+        <p className="quiz-label">
+          <Target size={18} /> MICRO KNOWLEDGE CHECK
+        </p>
+        <h3>{d.q}</h3>
+        <div className="answers">
+          {d.a.map((x, i) => (
+            <button
+              key={x}
+              onClick={() => setP(i)}
+              className={p === i ? (i === d.c ? "correct" : "wrong") : ""}
+            >
+              <span>{String.fromCharCode(65 + i)}</span>
+              {x}
+            </button>
+          ))}
+        </div>
+        {p !== null && (
+          <>
+            <p className={`feedback ${p === d.c ? "good" : "bad"}`}>
+              {p === d.c ? d.g : d.b}
+            </p>
+            <button className="finish-check" onClick={finish}>
+              Finish check <ArrowRight size={18} />
+            </button>
+          </>
+        )}
+      </section>
+    </div>,
+    document.body
+  );
+}
+
 function App() {
-  const [tab, setTab] = useState(0);
+  const [s, setS] = useState(0);
+  const [done, setDone] = useState(Array(6).fill(false));
+  const [modal, setModal] = useState(null);
+  const [quiz, setQuiz] = useState(null);
   const [sound, setSound] = useState(true);
-  const [revealed, setRevealed] = useState({});
-  const [openAccordion, setOpenAccordion] = useState(null);
-  const [modalData, setModalData] = useState(null);
-  const [quizAnswers, setQuizAnswers] = useState({});
+  const [catRead, setCatRead] = useState(Array(4).fill(false));
+  const [sysRead, setSysRead] = useState(Array(3).fill(false));
+  const [govRead, setGovRead] = useState(Array(2).fill(false));
 
   useLessonAudio(sound);
 
-  const toggleReveal = (key) => {
-    setRevealed((prev) => ({ ...prev, [key]: true }));
-  };
+  const mark = (i = s) =>
+    setDone((d) => d.map((x, j) => (j === i ? true : x)));
+  const go = (i) => i >= 0 && i < 6 && (i <= s + 1 || done[i - 1]) && setS(i);
 
-  const handleQuizAnswer = (quizIdx, optionIdx) => {
-    setQuizAnswers((prev) => ({ ...prev, [quizIdx]: optionIdx }));
-  };
+  useEffect(() => {
+    if (s === 1 && catRead.every(Boolean)) mark(1);
+  }, [catRead, s]);
+
+  let c;
+
+  if (s === 0)
+    c = (
+      <div className="hero-layout">
+        <div>
+          <p className="eyebrow">LESSON 6.5.6 · CONTINUALLY REVIEW EXTERNAL ENVIRONMENT</p>
+          <h1>
+            Weather never waits for scheduled <span>stops.</span>
+          </h1>
+          <p className="lead">
+            Think of it like keeping an eye on the weather during a road trip. If you don't monitor the forecast, you may suddenly find yourself driving straight into a storm. Scope never lives in a vacuum — continuous external scanning keeps you ahead of disruptions.
+          </p>
+          <button
+            className="primary-cta"
+            disabled={done[0]}
+            onClick={() => !done[0] && setModal("hook")}
+          >
+            {done[0] ? "Environmental radar reviewed" : "Reveal environmental radar"}{" "}
+            <ArrowRight size={18} />
+          </button>
+        </div>
+        <img className="lesson-art" src={img("road-trip-weather")} alt="" />
+      </div>
+    );
+
+  if (s === 1)
+    c = (
+      <div className="wide-page">
+        <h2>Four Categories of External Factors</h2>
+        <p className="lead">
+          Environmental scanning is not a one-off planning activity — it is continuous vigilance across four vital categories. Click each category to explore.
+        </p>
+        <div className="card-grid four">
+          {categories.map((cat, i) => {
+            const Icon = cat.icon;
+            const isRead = catRead[i];
+            return (
+              <button
+                className={`click-card ${isRead ? "read" : ""}`}
+                onClick={() => {
+                  setCatRead((r) => r.map((v, j) => (j === i ? true : v)));
+                  setModal({
+                    title: cat.title,
+                    text: cat.text,
+                    image: cat.image,
+                  });
+                }}
+                key={cat.title}
+              >
+                <span className="card-icon">
+                  <Icon size={28} />
+                </span>
+                <strong>{cat.title}</strong>
+                {isRead ? (
+                  <Check className="card-arrow check" size={20} />
+                ) : (
+                  <ArrowRight className="card-arrow" size={20} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+
+  if (s === 2)
+    c = (
+      <div className="hero-layout">
+        <div>
+          <p className="eyebrow">STRATEGIC VALUE</p>
+          <h2>Four Strategic Scanning Outcomes</h2>
+          <p className="lead">
+            External conditions evolve continuously. Active scanning delivers four vital organizational advantages: early risk detection, captured opportunities, continuous regulatory compliance, and sustained strategic alignment.
+          </p>
+          <button
+            className="primary-cta"
+            disabled={done[2]}
+            onClick={() => !done[2] && setModal("matters")}
+          >
+            {done[2] ? "Strategic outcomes reviewed" : "Reveal strategic scanning outcomes"}{" "}
+            <ArrowRight size={18} />
+          </button>
+        </div>
+        <img className="lesson-art" src={img("scanning-outcomes-radar")} alt="" />
+      </div>
+    );
+
+  if (s === 3)
+    c = (
+      <div className="wide-page">
+        <h2>How to Establish a Monitoring System</h2>
+        <p className="lead">
+          Three disciplined steps turn casual awareness into an operational monitoring system. Click each step to explore.
+        </p>
+        <div className="card-grid three">
+          {systemSteps.map((step, i) => {
+            const Icon = step.icon;
+            const isRead = sysRead[i];
+            return (
+              <button
+                className={`click-card ${isRead ? "read" : ""}`}
+                onClick={() => {
+                  setSysRead((r) => r.map((v, j) => (j === i ? true : v)));
+                  setModal({
+                    title: step.title,
+                    text: step.text,
+                    image: step.image,
+                  });
+                }}
+                key={step.title}
+              >
+                <span className="card-icon">
+                  <Icon size={28} />
+                </span>
+                <strong>{step.title}</strong>
+                {isRead ? (
+                  <Check className="card-arrow check" size={20} />
+                ) : (
+                  <ArrowRight className="card-arrow" size={20} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+        {sysRead.every(Boolean) && (
+          <button
+            className="knowledge-cta centered"
+            disabled={done[3]}
+            onClick={() => setQuiz(0)}
+          >
+            {done[3] ? (
+              <>
+                <Check size={18} /> Knowledge check completed
+              </>
+            ) : (
+              <>
+                <Target size={18} /> Start knowledge check <ArrowRight size={18} />
+              </>
+            )}
+          </button>
+        )}
+      </div>
+    );
+
+  if (s === 4)
+    c = (
+      <div className="wide-page">
+        <h2>Governance vs. Agile Approaches</h2>
+        <p className="lead">
+          How external changes get handled depends heavily on the project's governance framework. Click each approach to explore.
+        </p>
+        <div className="card-grid two">
+          {governanceModels.map((gov, i) => {
+            const Icon = gov.icon;
+            const isRead = govRead[i];
+            return (
+              <button
+                className={`click-card ${isRead ? "read" : ""}`}
+                onClick={() => {
+                  setGovRead((r) => r.map((v, j) => (j === i ? true : v)));
+                  setModal({
+                    title: gov.title,
+                    text: gov.text,
+                    image: gov.image,
+                  });
+                }}
+                key={gov.title}
+              >
+                <span className="card-icon">
+                  <Icon size={28} />
+                </span>
+                <strong>{gov.title}</strong>
+                {isRead ? (
+                  <Check className="card-arrow check" size={20} />
+                ) : (
+                  <ArrowRight className="card-arrow" size={20} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+        {govRead.every(Boolean) && (
+          <button
+            className="knowledge-cta centered"
+            disabled={done[4]}
+            onClick={() => setQuiz(1)}
+          >
+            {done[4] ? (
+              <>
+                <Check size={18} /> Knowledge check completed
+              </>
+            ) : (
+              <>
+                <Target size={18} /> Start knowledge check <ArrowRight size={18} />
+              </>
+            )}
+          </button>
+        )}
+      </div>
+    );
+
+  if (s === 5)
+    c = (
+      <div className="exam-layout">
+        <p className="eyebrow">MODULE 6 SYNTHESIS</p>
+        <h2>Proactive Environmental Alignment</h2>
+        <div className="exam-two-col">
+          <div>
+            <p className="lead">
+              Back to that road trip one more time — because the storm was never going to wait for a scheduled check-in.
+            </p>
+            <p>
+              Maintaining an outward-looking radar ensures the project navigates environmental shifts cleanly, preserving value and compliance across adaptive and predictive lifecycles.
+            </p>
+            <button
+              className="primary-cta"
+              disabled={done[5]}
+              onClick={() => setModal("exam")}
+            >
+              {done[5] ? "Exam takeaway review complete" : "Review key exam takeaways"}{" "}
+              <ArrowRight size={18} />
+            </button>
+          </div>
+          <img className="lesson-art" src={img("exam-external-review")} alt="" />
+        </div>
+      </div>
+    );
 
   return (
-    <div className="app-container">
-      {/* Header */}
-      <header className="header">
-        <div className="header-content">
-          <div className="badge-wrapper">
-            <span className="badge">Lesson 6.5.6</span>
-            <span className="badge-meta">CertSprints PMP · Module 6</span>
-          </div>
-          <h1 className="main-title">Continually Review the External Business Environment</h1>
-          <p className="subtitle">
-            Scanning external forces, analyzing emerging market and regulatory trends, and adapting project scope and backlog.
-          </p>
+    <div className="app-shell">
+      <header className="topbar">
+        <div className="course-select">
+          <span className="crumb">Module 6</span>
+          <span className="crumb-sep">/</span>
+          <span className="crumb-current">Lesson 6.5.6</span>
         </div>
-        <div className="audio-toggle">
-          <button
-            onClick={() => setSound(!sound)}
-            className="icon-button"
-            title={sound ? "Mute audio feedback" : "Enable audio feedback"}
-          >
-            {sound ? <Volume2 size={20} /> : <VolumeX size={20} />}
+        <div className="module-progress">
+          <div>
+            {Array.from({ length: 10 }, (_, i) => (
+              <span
+                className={`progress-dot ${
+                  i < 9 ? "done" : i === 9 ? "active" : ""
+                }`}
+                key={i}
+              >
+                {i < 9 ? <Check size={10} /> : <span />}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="top-actions">
+          <button className="ghost-button" onClick={() => setSound(!sound)}>
+            {sound ? <Volume2 size={16} /> : <VolumeX size={16} />}
+            <span>{sound ? "Sound on" : "Sound off"}</span>
+          </button>
+          <button className="ghost-button">
+            <X size={16} />
+            <span>Quit</span>
           </button>
         </div>
       </header>
-
-      {/* Tabs Navigation */}
-      <nav className="tabs-nav" aria-label="Lesson screens">
-        {tabs.map((name, i) => (
-          <button
-            key={name}
-            onClick={() => setTab(i)}
-            className={`tab-btn ${tab === i ? "tab-btn-active" : ""}`}
-          >
-            <span className="tab-number">{i + 1}</span>
-            <span className="tab-name">{name}</span>
-          </button>
-        ))}
-      </nav>
-
-      {/* Main Content Area */}
-      <main className="content-area">
-        {/* SCREEN 1: HOOK */}
-        {tab === 0 && (
-          <div className="screen-card">
-            <div className="card-badge">Screen 1 · Hook</div>
-            <h2 className="screen-heading">The Road Trip: Weather Never Waits for Scheduled Stops</h2>
-            <div className="intro-prose">
-              <p>
-                Think of it like keeping an eye on the weather during a road trip. If you don't monitor the forecast, you may suddenly find yourself driving straight into a storm.
-              </p>
-            </div>
-
-            {!revealed.hook ? (
-              <div className="reveal-cta">
-                <button
-                  onClick={() => toggleReveal("hook")}
-                  className="primary-btn"
-                >
-                  <Sparkles size={18} />
-                  <span>Reveal the Environmental Risk</span>
-                </button>
-              </div>
-            ) : (
-              <div className="reveal-box animate-fade-in">
-                <div className="reveal-content-grid">
-                  <div className="reveal-text">
-                    <h3 className="section-title">Scope Never Lives in a Vacuum</h3>
-                    <p>
-                      One of the biggest mistakes in project management is assuming that once scope is set, it stays fixed. The external business environment is constantly evolving — new regulations are introduced, markets shift, technologies disrupt, and geopolitical events reshape supply chains overnight.
-                    </p>
-                    <p>
-                      <strong>Continual review ensures you're never caught off guard</strong> — you adapt early, realign scope, and keep the project safe.
-                    </p>
-                    <div className="highlight-pill">
-                      <span>Key Takeaway:</span> Project success requires an outward-facing radar as much as internal control.
-                    </div>
-                  </div>
-                  <div className="reveal-image-container">
-                    <img
-                      src={img("road-trip-weather")}
-                      alt="Early warning radar scanning continuously along a project timeline"
-                      className="lesson-image"
-                      onClick={() =>
-                        setModalData({
-                          title: "Environmental Radar Scanning",
-                          image: "road-trip-weather",
-                          text: "Active radar scanning along the project journey detects environmental storms early, giving leadership time to adjust routes before impact.",
-                        })
-                      }
-                    />
-                    <span className="image-caption">Click image to expand</span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="screen-footer">
-              <div></div>
-              <button onClick={() => setTab(1)} className="nav-btn next-btn">
-                <span>Next: Four categories</span>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* SCREEN 2: FOUR CATEGORIES */}
-        {tab === 1 && (
-          <div className="screen-card">
-            <div className="card-badge">Screen 2 · External Factor Taxonomy</div>
-            <h2 className="screen-heading">Four Categories of External Factors</h2>
-            <div className="intro-prose">
-              <p>
-                This is not a one-off activity — it's continuous environmental scanning across four categories. Click each to explore.
-              </p>
-            </div>
-
-            <div className="accordion-list">
-              {categories.map((cat, index) => {
-                const IconComponent = cat.icon;
-                const isOpen = openAccordion === index;
-                return (
-                  <div
-                    key={cat.title}
-                    className={`accordion-card ${isOpen ? "accordion-open" : ""}`}
+      <main className="workspace">
+        <section className="lesson-stage">
+          <article className="lesson-card">
+            <div className="section-tabs">
+              <p>SECTION {s + 1} OF 6</p>
+              <div>
+                {tabs.map((x, i) => (
+                  <button
+                    className={`${done[i] ? "done" : ""} ${
+                      s === i ? "active" : ""
+                    }`}
+                    key={x}
+                    onClick={() => go(i)}
                   >
-                    <button
-                      className="accordion-header"
-                      onClick={() =>
-                        setOpenAccordion(isOpen ? null : index)
-                      }
-                    >
-                      <div className="accordion-title-group">
-                        <span className="accordion-icon-box">
-                          <IconComponent size={20} />
-                        </span>
-                        <span className="accordion-title">{cat.title}</span>
-                      </div>
-                      <ChevronDown
-                        size={20}
-                        className={`chevron ${isOpen ? "chevron-rotated" : ""}`}
-                      />
-                    </button>
-                    {isOpen && (
-                      <div className="accordion-body animate-fade-in">
-                        <div className="accordion-grid">
-                          <div className="accordion-desc">
-                            <p>{cat.description}</p>
-                          </div>
-                          <div className="accordion-img-wrap">
-                            <img
-                              src={img(cat.image)}
-                              alt={cat.title}
-                              className="accordion-thumb"
-                              onClick={() =>
-                                setModalData({
-                                  title: cat.title,
-                                  image: cat.image,
-                                  text: cat.description,
-                                })
-                              }
-                            />
-                            <span className="image-caption">Enlarge</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                    {done[i] && <Check size={14} />}
+                    {x}
+                  </button>
+                ))}
+              </div>
             </div>
-
-            <div className="screen-footer">
-              <button onClick={() => setTab(0)} className="nav-btn prev-btn">
-                <ArrowLeft size={18} />
-                <span>Previous</span>
-              </button>
-              <button onClick={() => setTab(2)} className="nav-btn next-btn">
-                <span>Next: Why monitoring matters</span>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* SCREEN 3: WHY CONTINUOUS MONITORING MATTERS */}
-        {tab === 2 && (
-          <div className="screen-card">
-            <div className="card-badge">Screen 3 · Proactive Value</div>
-            <h2 className="screen-heading">Why Continuous Monitoring Matters</h2>
-            <div className="intro-prose">
-              <p>
-                External conditions don't change once — they evolve. Continuous monitoring allows project managers to stay ahead rather than react late.
+            <div className="lesson-content">{c}</div>
+            {done[s] && (
+              <p className="completion">
+                <Check size={16} /> Interaction complete — continue when ready.
               </p>
-            </div>
-
-            {!revealed.matters ? (
-              <div className="reveal-cta">
-                <button
-                  onClick={() => toggleReveal("matters")}
-                  className="primary-btn"
-                >
-                  <Sparkles size={18} />
-                  <span>Reveal the Strategic Benefits</span>
-                </button>
-              </div>
-            ) : (
-              <div className="reveal-box animate-fade-in">
-                <div className="reveal-content-grid">
-                  <div className="reveal-text">
-                    <h3 className="section-title">Four Proactive Advantages</h3>
-                    <p>
-                      Ongoing monitoring produces four vital organizational outcomes:
-                    </p>
-                    <ul className="bullet-list">
-                      <li>
-                        <strong>Early Risk Detection:</strong> Catches potential disruptions before they escalate into costly project issues.
-                      </li>
-                      <li>
-                        <strong>Captured Opportunities:</strong> Capitalizes on emerging technologies, favorable market windows, or cost-saving innovations.
-                      </li>
-                      <li>
-                        <strong>Regulatory Compliance:</strong> Ensures continuous alignment with evolving laws, preventing penalties and work stoppages.
-                      </li>
-                      <li>
-                        <strong>Strategic Alignment:</strong> Keeps deliverable value synchronized with organizational strategy and real-world customer demand.
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="reveal-image-container">
-                    <img
-                      src={img("scanning-outcomes-radar")}
-                      alt="Continuous environmental radar delivering risk detection and strategic alignment"
-                      className="lesson-image"
-                      onClick={() =>
-                        setModalData({
-                          title: "Outcomes of Environmental Scanning",
-                          image: "scanning-outcomes-radar",
-                          text: "Active environmental scanning delivers protection against emerging risks while uncovering timely opportunities for added business value.",
-                        })
-                      }
-                    />
-                    <span className="image-caption">Click image to expand</span>
-                  </div>
-                </div>
-              </div>
             )}
-
-            <div className="screen-footer">
-              <button onClick={() => setTab(1)} className="nav-btn prev-btn">
-                <ArrowLeft size={18} />
-                <span>Previous</span>
+            <footer className="nav-footer">
+              <button
+                className="secondary-button"
+                disabled={!s}
+                onClick={() => go(s - 1)}
+              >
+                <ArrowLeft size={16} /> Previous
               </button>
-              <button onClick={() => setTab(3)} className="nav-btn next-btn">
-                <span>Next: Monitoring system</span>
-                <ArrowRight size={18} />
+              <button
+                className={`primary-button ${done[s] ? "unlocked" : ""}`}
+                disabled={!done[s]}
+                onClick={() => s < 5 && go(s + 1)}
+              >
+                Continue <ArrowRight size={16} />
               </button>
-            </div>
-          </div>
-        )}
-
-        {/* SCREEN 4: MONITORING SYSTEM & KNOWLEDGE CHECK */}
-        {tab === 3 && (
-          <div className="screen-card">
-            <div className="card-badge">Screen 4 · System Architecture</div>
-            <h2 className="screen-heading">How to Establish a Monitoring System</h2>
-            <div className="intro-prose">
-              <p>
-                Three disciplined steps turn "keeping an eye on things" into an operational system. Click each to explore.
-              </p>
-            </div>
-
-            <div className="accordion-list">
-              {systemSteps.map((step, index) => {
-                const IconComponent = step.icon;
-                const isOpen = openAccordion === `sys-${index}`;
-                return (
-                  <div
-                    key={step.title}
-                    className={`accordion-card ${isOpen ? "accordion-open" : ""}`}
-                  >
-                    <button
-                      className="accordion-header"
-                      onClick={() =>
-                        setOpenAccordion(isOpen ? null : `sys-${index}`)
-                      }
-                    >
-                      <div className="accordion-title-group">
-                        <span className="accordion-icon-box">
-                          <IconComponent size={20} />
-                        </span>
-                        <span className="accordion-title">{step.title}</span>
-                      </div>
-                      <ChevronDown
-                        size={20}
-                        className={`chevron ${isOpen ? "chevron-rotated" : ""}`}
-                      />
-                    </button>
-                    {isOpen && (
-                      <div className="accordion-body animate-fade-in">
-                        <div className="accordion-grid">
-                          <div className="accordion-desc">
-                            <p>{step.description}</p>
-                          </div>
-                          <div className="accordion-img-wrap">
-                            <img
-                              src={img(step.image)}
-                              alt={step.title}
-                              className="accordion-thumb"
-                              onClick={() =>
-                                setModalData({
-                                  title: step.title,
-                                  image: step.image,
-                                  text: step.description,
-                                })
-                              }
-                            />
-                            <span className="image-caption">Enlarge</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Micro Knowledge Check 1 */}
-            <div className="quiz-section">
-              <div className="quiz-header">
-                <HelpCircle className="quiz-badge-icon" size={20} />
-                <span>Micro Knowledge Check</span>
-              </div>
-              <p className="quiz-scenario">{quizzes[0].q}</p>
-              <div className="quiz-options">
-                {quizzes[0].a.map((opt, optIdx) => {
-                  const isSelected = quizAnswers[0] === optIdx;
-                  const isCorrect = optIdx === quizzes[0].correct;
-                  return (
-                    <button
-                      key={optIdx}
-                      onClick={() => handleQuizAnswer(0, optIdx)}
-                      className={`quiz-option ${
-                        isSelected
-                          ? isCorrect
-                            ? "quiz-option-correct"
-                            : "quiz-option-wrong"
-                          : ""
-                      }`}
-                    >
-                      <span className="option-letter">
-                        {String.fromCharCode(65 + optIdx)}
-                      </span>
-                      <span className="option-text">{opt}</span>
-                    </button>
-                  );
-                })}
-              </div>
-              {quizAnswers[0] !== undefined && (
-                <div
-                  className={`quiz-feedback ${
-                    quizAnswers[0] === quizzes[0].correct
-                      ? "feedback-correct"
-                      : "feedback-wrong"
-                  } animate-fade-in`}
-                >
-                  {quizAnswers[0] === quizzes[0].correct
-                    ? quizzes[0].explain
-                    : quizzes[0].fail}
-                </div>
-              )}
-            </div>
-
-            <div className="screen-footer">
-              <button onClick={() => setTab(2)} className="nav-btn prev-btn">
-                <ArrowLeft size={18} />
-                <span>Previous</span>
-              </button>
-              <button onClick={() => setTab(4)} className="nav-btn next-btn">
-                <span>Next: Governance vs. Agile</span>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* SCREEN 5: GOVERNANCE VS. AGILE APPROACHES & KNOWLEDGE CHECK */}
-        {tab === 4 && (
-          <div className="screen-card">
-            <div className="card-badge">Screen 5 · Governance Models</div>
-            <h2 className="screen-heading">Governance vs. Agile Approaches</h2>
-            <div className="intro-prose">
-              <p>
-                How external changes get handled depends heavily on the project's governance model. Click each to explore.
-              </p>
-            </div>
-
-            <div className="accordion-list">
-              {governanceModels.map((gov, index) => {
-                const IconComponent = gov.icon;
-                const isOpen = openAccordion === `gov-${index}`;
-                return (
-                  <div
-                    key={gov.title}
-                    className={`accordion-card ${isOpen ? "accordion-open" : ""}`}
-                  >
-                    <button
-                      className="accordion-header"
-                      onClick={() =>
-                        setOpenAccordion(isOpen ? null : `gov-${index}`)
-                      }
-                    >
-                      <div className="accordion-title-group">
-                        <span className="accordion-icon-box">
-                          <IconComponent size={20} />
-                        </span>
-                        <span className="accordion-title">{gov.title}</span>
-                      </div>
-                      <ChevronDown
-                        size={20}
-                        className={`chevron ${isOpen ? "chevron-rotated" : ""}`}
-                      />
-                    </button>
-                    {isOpen && (
-                      <div className="accordion-body animate-fade-in">
-                        <div className="accordion-grid">
-                          <div className="accordion-desc">
-                            <p>{gov.description}</p>
-                          </div>
-                          <div className="accordion-img-wrap">
-                            <img
-                              src={img(gov.image)}
-                              alt={gov.title}
-                              className="accordion-thumb"
-                              onClick={() =>
-                                setModalData({
-                                  title: gov.title,
-                                  image: gov.image,
-                                  text: gov.description,
-                                })
-                              }
-                            />
-                            <span className="image-caption">Enlarge</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Micro Knowledge Check 2 */}
-            <div className="quiz-section">
-              <div className="quiz-header">
-                <HelpCircle className="quiz-badge-icon" size={20} />
-                <span>Micro Knowledge Check</span>
-              </div>
-              <p className="quiz-scenario">{quizzes[1].q}</p>
-              <div className="quiz-options">
-                {quizzes[1].a.map((opt, optIdx) => {
-                  const isSelected = quizAnswers[1] === optIdx;
-                  const isCorrect = optIdx === quizzes[1].correct;
-                  return (
-                    <button
-                      key={optIdx}
-                      onClick={() => handleQuizAnswer(1, optIdx)}
-                      className={`quiz-option ${
-                        isSelected
-                          ? isCorrect
-                            ? "quiz-option-correct"
-                            : "quiz-option-wrong"
-                          : ""
-                      }`}
-                    >
-                      <span className="option-letter">
-                        {String.fromCharCode(65 + optIdx)}
-                      </span>
-                      <span className="option-text">{opt}</span>
-                    </button>
-                  );
-                })}
-              </div>
-              {quizAnswers[1] !== undefined && (
-                <div
-                  className={`quiz-feedback ${
-                    quizAnswers[1] === quizzes[1].correct
-                      ? "feedback-correct"
-                      : "feedback-wrong"
-                  } animate-fade-in`}
-                >
-                  {quizAnswers[1] === quizzes[1].correct
-                    ? quizzes[1].explain
-                    : quizzes[1].fail}
-                </div>
-              )}
-            </div>
-
-            <div className="screen-footer">
-              <button onClick={() => setTab(3)} className="nav-btn prev-btn">
-                <ArrowLeft size={18} />
-                <span>Previous</span>
-              </button>
-              <button onClick={() => setTab(5)} className="nav-btn next-btn">
-                <span>Next: Exam lens</span>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* SCREEN 6: SYNTHESIS (EXAM LENS) */}
-        {tab === 5 && (
-          <div className="screen-card">
-            <div className="card-badge">Screen 6 · Synthesis & Exam Lens</div>
-            <h2 className="screen-heading">Proactive Environmental Alignment</h2>
-            <div className="intro-prose">
-              <p>
-                Back to that road trip one more time — because the storm was never going to wait for a scheduled check-in.
-              </p>
-            </div>
-
-            {!revealed.exam ? (
-              <div className="reveal-cta">
-                <button
-                  onClick={() => toggleReveal("exam")}
-                  className="primary-btn"
-                >
-                  <Award size={18} />
-                  <span>Reveal Key Exam Takeaways</span>
-                </button>
-              </div>
-            ) : (
-              <div className="reveal-box animate-fade-in">
-                <div className="reveal-content-grid">
-                  <div className="reveal-text">
-                    <h3 className="section-title">Exam-Relevant Enablers</h3>
-                    <ul className="bullet-list">
-                      <li>
-                        <strong>Four external factor categories:</strong> Regulations and compliance, technological advances, geopolitical events, market shifts.
-                      </li>
-                      <li>
-                        <strong>Continuous scanning:</strong> Environmental scanning is an ongoing discipline, never a one-off planning activity.
-                      </li>
-                      <li>
-                        <strong>Three-step monitoring system:</strong> Implement continuous monitoring processes, analyze emerging trends, adapt scope or backlog.
-                      </li>
-                      <li>
-                        <strong>Traditional governance:</strong> Formal steering committee review and approval of baseline adjustments at defined intervals.
-                      </li>
-                      <li>
-                        <strong>Agile governance:</strong> Product Owner continually monitors external conditions and reprioritizes the product backlog as new information emerges.
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="reveal-image-container">
-                    <img
-                      src={img("exam-external-review")}
-                      alt="Project actively protected by continuous environmental scanning"
-                      className="lesson-image"
-                      onClick={() =>
-                        setModalData({
-                          title: "Continual External Review",
-                          image: "exam-external-review",
-                          text: "Maintaining an outward-looking radar ensures the project navigates environmental shifts cleanly, preserving value and compliance.",
-                        })
-                      }
-                    />
-                    <span className="image-caption">Click image to expand</span>
-                  </div>
-                </div>
-
-                <div className="completion-card">
-                  <Award size={32} className="completion-icon" />
-                  <div>
-                    <h4>Lesson 6.5.6 Completed</h4>
-                    <p>You have mastered continual review of the external business environment and scope/backlog adaptation.</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="screen-footer">
-              <button onClick={() => setTab(4)} className="nav-btn prev-btn">
-                <ArrowLeft size={18} />
-                <span>Previous</span>
-              </button>
-              <div></div>
-            </div>
-          </div>
-        )}
+            </footer>
+          </article>
+        </section>
       </main>
-
-      {/* Modal Lightbox Portal */}
-      {modalData &&
-        createPortal(
-          <div className="modal-backdrop" onClick={() => setModalData(null)}>
-            <div
-              className="modal-content animate-pop"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="modal-header">
-                <h3>{modalData.title}</h3>
-                <button
-                  className="close-btn"
-                  onClick={() => setModalData(null)}
-                >
-                  <X size={20} />
-                </button>
-              </div>
-              <div className="modal-body">
-                <img
-                  src={img(modalData.image)}
-                  alt={modalData.title}
-                  className="modal-image"
-                />
-                <p className="modal-caption">{modalData.text}</p>
-              </div>
-            </div>
-          </div>,
-          document.body
-        )}
+      {modal && (
+        <Modal
+          d={typeof modal === "string" ? reveals[modal] : modal}
+          close={() => setModal(null)}
+          done={() => {
+            if (typeof modal === "string") mark();
+          }}
+        />
+      )}
+      {quiz !== null && (
+        <Quiz
+          d={quizzes[quiz]}
+          finish={() => {
+            mark(quiz === 0 ? 3 : 4);
+            setQuiz(null);
+          }}
+        />
+      )}
     </div>
   );
 }
