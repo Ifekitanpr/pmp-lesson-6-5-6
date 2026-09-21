@@ -232,7 +232,7 @@ function Quiz({ d, finish }) {
               {p === d.c ? d.g : d.b}
             </p>
             <button className="finish-check" onClick={finish}>
-              Finish check & unlock next screen <ArrowRight size={18} />
+              Finish check <ArrowRight size={18} />
             </button>
           </>
         )}
@@ -278,7 +278,7 @@ function App() {
             disabled={done[0]}
             onClick={() => !done[0] && setModal("hook")}
           >
-            {done[0] ? "Environmental review complete" : "Click to Reveal: The External Risk"}{" "}
+            {done[0] ? "External risk revealed" : "Reveal external risk"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
@@ -339,7 +339,7 @@ function App() {
             disabled={done[2]}
             onClick={() => !done[2] && setModal("matters")}
           >
-            {done[2] ? "Monitoring outcomes reviewed" : "Click to Reveal: Strategic Outcomes"}{" "}
+            {done[2] ? "Strategic outcomes revealed" : "Reveal strategic outcomes"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
@@ -389,7 +389,7 @@ function App() {
             className="knowledge-cta centered"
             onClick={() => setQuiz(0)}
           >
-            <Target size={18} /> {done[3] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+            <Target size={18} /> {done[3] ? "Retake knowledge check" : "Start knowledge check"}{" "}
             <ArrowRight size={18} />
           </button>
         )}
@@ -438,7 +438,7 @@ function App() {
             className="knowledge-cta centered"
             onClick={() => setQuiz(1)}
           >
-            <Target size={18} /> {done[4] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+            <Target size={18} /> {done[4] ? "Retake knowledge check" : "Start knowledge check"}{" "}
             <ArrowRight size={18} />
           </button>
         )}
@@ -461,7 +461,7 @@ function App() {
             disabled={done[5]}
             onClick={() => setModal("exam")}
           >
-            {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
+            {done[5] ? "Exam review complete" : "Reveal exam enablers"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
