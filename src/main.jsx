@@ -448,22 +448,22 @@ function App() {
   if (s === 5)
     c = (
       <div className="exam-layout">
-        <h2>Synthesis (Exam Lens)</h2>
-        <div className="exam-two-col">
-          <div>
-            <p className="lead">
-              Back to that road trip one more time — because the storm was never going to wait for a scheduled check-in.
-            </p>
-            <button
-              className="primary-cta"
-              disabled={done[5]}
-              onClick={() => setModal("exam")}
-            >
-              {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
-              <ArrowRight size={18} />
-            </button>
-          </div>
-          <img className="lesson-art" src={img("exam-external-review")} alt="Road trip synthesis" />
+        <div className="exam-visual">
+          <img src={img("exam-external-review")} alt="Road trip synthesis" />
+        </div>
+        <div>
+          <h2>Synthesis (Exam Lens)</h2>
+          <p className="lead">
+            Back to that road trip one more time — because the storm was never going to wait for a scheduled check-in.
+          </p>
+          <button
+            className="primary-cta"
+            disabled={done[5]}
+            onClick={() => setModal("exam")}
+          >
+            {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
+            <ArrowRight size={18} />
+          </button>
         </div>
       </div>
     );
