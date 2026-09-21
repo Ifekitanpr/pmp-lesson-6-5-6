@@ -152,7 +152,7 @@ const quizzes = [
   },
 ];
 
-function Modal({ d, close, done }) {
+function Modal({ d, close, onComplete }) {
   const [step, setStep] = useState(0);
   useEffect(() => {
     const esc = (e) => e.key === "Escape" && close();
@@ -192,7 +192,7 @@ function Modal({ d, close, done }) {
           <button
             className="modal-action"
             onClick={() => {
-              done();
+              if (onComplete) onComplete();
               close();
             }}
           >
@@ -232,7 +232,7 @@ function Quiz({ d, finish }) {
               {p === d.c ? d.g : d.b}
             </p>
             <button className="finish-check" onClick={finish}>
-              Finish check <ArrowRight size={18} />
+              Finish check & unlock next screen <ArrowRight size={18} />
             </button>
           </>
         )}
@@ -268,8 +268,8 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">SCREEN 1 — HOOK</p>
-          <h1>Lesson 6.5.6 — Continually Review the External Business Environment for Impacts on Project Scope/Backlog</h1>
+          <p className="eyebrow">Lesson 6.5.6 — Continually Review the External Business Environment for Impacts on Project Scope/Backlog</p>
+          <h1>Think of it like keeping an eye on the weather during a road trip.</h1>
           <p className="lead">
             Think of it like keeping an eye on the weather during a road trip. If you don't monitor the forecast, you may suddenly find yourself driving straight into a storm.
           </p>
@@ -289,7 +289,6 @@ function App() {
   if (s === 1)
     c = (
       <div className="wide-page">
-        <p className="eyebrow">SCREEN 2 — FOUR CATEGORIES OF EXTERNAL FACTORS</p>
         <h2>Four Categories of External Factors</h2>
         <p className="lead">
           This is not a one-off activity — it's continuous environmental scanning across four categories. Click each to explore.
@@ -331,7 +330,6 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">SCREEN 3 — WHY CONTINUOUS MONITORING MATTERS</p>
           <h2>Why Continuous Monitoring Matters</h2>
           <p className="lead">
             External conditions don't change once — they evolve. Continuous monitoring allows project managers to stay ahead rather than react late.
@@ -352,7 +350,6 @@ function App() {
   if (s === 3)
     c = (
       <div className="wide-page">
-        <p className="eyebrow">SCREEN 4 — HOW TO ESTABLISH A MONITORING SYSTEM</p>
         <h2>How to Establish a Monitoring System</h2>
         <p className="lead">
           Three steps turn "keeping an eye on things" into an actual system. Click each to explore.
@@ -390,18 +387,10 @@ function App() {
         {sysRead.every(Boolean) && (
           <button
             className="knowledge-cta centered"
-            disabled={done[3]}
             onClick={() => setQuiz(0)}
           >
-            {done[3] ? (
-              <>
-                <Check size={18} /> Micro Knowledge Check completed
-              </>
-            ) : (
-              <>
-                <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
-              </>
-            )}
+            <Target size={18} /> {done[3] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+            <ArrowRight size={18} />
           </button>
         )}
       </div>
@@ -410,7 +399,6 @@ function App() {
   if (s === 4)
     c = (
       <div className="wide-page">
-        <p className="eyebrow">SCREEN 5 — GOVERNANCE VS. AGILE APPROACHES</p>
         <h2>Governance vs. Agile Approaches</h2>
         <p className="lead">
           How external changes get handled depends heavily on the project's governance model. Click each to explore.
@@ -448,18 +436,10 @@ function App() {
         {govRead.every(Boolean) && (
           <button
             className="knowledge-cta centered"
-            disabled={done[4]}
             onClick={() => setQuiz(1)}
           >
-            {done[4] ? (
-              <>
-                <Check size={18} /> Micro Knowledge Check completed
-              </>
-            ) : (
-              <>
-                <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
-              </>
-            )}
+            <Target size={18} /> {done[4] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+            <ArrowRight size={18} />
           </button>
         )}
       </div>
@@ -468,7 +448,6 @@ function App() {
   if (s === 5)
     c = (
       <div className="exam-layout">
-        <p className="eyebrow">SCREEN 6 — SYNTHESIS (EXAM LENS)</p>
         <h2>Synthesis (Exam Lens)</h2>
         <div className="exam-two-col">
           <div>
@@ -545,7 +524,7 @@ function App() {
             <div className="lesson-content">{c}</div>
             {done[s] && (
               <p className="completion">
-                <Check size={16} /> Interaction complete — continue when ready.
+                <Check size={16} /> Section complete — continue when ready.
               </p>
             )}
             <footer className="nav-footer">
@@ -571,8 +550,10 @@ function App() {
         <Modal
           d={typeof modal === "string" ? reveals[modal] : modal}
           close={() => setModal(null)}
-          done={() => {
-            if (typeof modal === "string") mark();
+          onComplete={() => {
+            if (modal === "hook") mark(0);
+            if (modal === "matters") mark(2);
+            if (modal === "exam") mark(5);
           }}
         />
       )}
